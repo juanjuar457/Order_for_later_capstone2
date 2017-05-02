@@ -1,0 +1,74 @@
+* {
+	box-sizing: border-box;
+	font-weight: 5px; 
+	font-size: 25px;
+}
+
+
+
+form label {
+	color: black;
+	display: inline-block;
+	width: 200px;
+}
+
+form .order_cells {
+	display: inline-block;
+}
+
+h1 {
+	color: white;
+}
+
+
+.login_body {
+	text-align: center;
+}
+
+.form_head {
+	padding: 20px;
+}
+
+
+
+.submit_button {
+	margin: auto;
+	text-align: center;
+	padding: 10px;
+}
+
+.ing_name {
+	color: white;
+	margin: 15px;
+	text-align: center;
+}
+
+
+body {
+	background-color: #0D254C;
+
+}
+
+
+.mock_form {
+	color: white;
+}
+
+.example_entry {
+	color: white;
+	max-width: auto; 
+	border-style: solid;
+	border-color: white;
+	padding: 10px;
+	margin: 20px;
+	text-align: center;
+
+}
+
+
+/* mouse over link */
+.example_entry:hover {
+    color: #D3D3D3;
+}
+
+
