@@ -1,59 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Capstone 2 - Form page</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
-		<!-- kip boostrap must go before our css -->
-		<link rel="stylesheet" type="text/css" href="main.css">
-	<body>
+<head>
+    <title>Capstone 2 - Form page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <body class="container">
+        <h1 id="order_form_header">ORDER FOR LATER</h1>
+        <div id="order_form_row" class="row">
+            <div class="col-md-2">Vendor</div>
+            <div class="col-md-1">Quantity</div>
+            <div class="col-md-2">Product</div>
+            <div class="col-md-2">Catalog #</div>
+            <div class="col-md-2">Unit Size</div>
+            <div class="col-md-2">Units</div>
+            <div class="col-md-1">&nbsp;</div>
+        </div>
+        <form id="main_submit" class="row">
+            <input id="vendor" type="text" class="col-md-2" placeholder="Enter Vendor" required>
+            <input id="quantity" type="text" class="col-md-1" placeholder="Enter Quantity" required>
+            <input id="product_name" type="text" class="col-md-2" placeholder="Enter Product Name" required>
+            <input id="catalog_number" type="text" class="col-md-2" placeholder="Enter Catalog/Lot Number" required>
+            <input id="unit_size" type="text" class="col-md-2" placeholder="Enter Unit Size" required>
+            <select id="units" class="col-md-2" required> </select>
+            <button type="submit" class="btn btn-primary col-md-1">Add</button>
+            <!--may need <i> tag </i> to wrap with glyph button?--> 
+        </form>
 
-	<div id="testRender"></div> 
-
-		<div class="container text-center">
-		      <h1 id="for_data" class="glyphicon glyphicon-pencil">ORDER FOR LATER</h1>
-		       <!--  <form class="col-lg-12 col-lg-offset-6 form-inline"> -->
-		       <form  id="main_submit" class="col-lg-12 form-inline">
-<!-- main submit === id on 15!  -->
-		          	<div class="input-group">
-		            	<input id="vendor" type="text" class="form-control form-inline" placeholder="Enter Vendor" required >  
-		          	</div><!-- /input-group -->
-
-		           	<div class="input-group">
-		            	<input id="quantity" type="text" class="form-control" placeholder="Enter Quantity" required> 
-		          	</div><!-- /input-group -->
-
-		            <div class="input-group">
-		            	<input id="product_name" type="text" class="form-control" placeholder="Enter Product Name" required>   
-		          	</div><!-- /input-group -->
-
-		            <div class="input-group">
-			            <input id="catalog_number" type="text" class="form-control" placeholder="Enter Catalog/Lot Number" required>				           
-		          	</div><!-- /input-group -->
-		         
-		          	 <div class="input-group">
-		            	 <input id="unit_size" type="text" class="form-control" placeholder="Enter Unit Size" required>				           
-		          	</div><!-- /input-group --> 
-
-		         	<div class="input-group">
-		            	<select id="units" class="form-control" required> </select>
-		          	</div><!-- /input-group -->           
-		          	<button  type="submit" class="btn btn-primary btn-lg btn-block">Add Material</button>
-
-		  
-		      </form><!-- /.col-lg-6 -->
-		</div>
-
-<!-- 	<a href="index.html">back to login]</a> -->
-	<a href="landing.html">back to landing page</a>
-
-	<!-- for appended entries-->
-	<div id="requested_materials"></div>
-
-
-	<script
-	  src="https://code.jquery.com/jquery-3.2.1.min.js"
-	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	  crossorigin="anonymous"></script>
-	<script type="text/javascript" src="app.js"></script>
-	</body>
+        <!-- for appended entries-->
+        <div id="requested_materials"></div>
+        <!-- 	<a href="index.html">back to login]</a> -->
+        <a href="landing.html">back to landing page</a>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
 </html>

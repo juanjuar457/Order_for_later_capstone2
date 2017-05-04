@@ -1,12 +1,29 @@
 * {
 	box-sizing: border-box;
 	font-weight: 5px; 
-	font-size: 25px;
 }
-.future_features {
-	font-weight: 10%;
-	text-align: left;
+
+#order_form_row {
+    color: white;
 }
+
+#order_form_header {
+    text-align: center;
+}
+
+.par_desc {
+    padding: 20px;
+    font-size: 30px;
+}
+
+.go_to_btn {
+    font-size: 33px; 
+}
+#landing_head {
+    text-align: center;
+    font-size: 39px;
+}
+
 .example_entryonBackOrder {
 	color: #FF4500;
 	max-width: auto; 
@@ -97,5 +114,12 @@ body {
     color: #D3D3D3;
 }
 
+ul {
+    list-style-type: none;
+}
 
+li {
+    width: 100%;
+    text-align: center;
+}
 
