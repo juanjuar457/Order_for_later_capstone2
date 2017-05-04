@@ -1,10 +1,52 @@
 * {
-	box-sizing: border-box;
-	font-weight: 5px; 
+    box-sizing: border-box;
+    font-weight: 5px;
 }
 
-#order_form_row {
-    color: white;
+#vendor {
+    height: 20px;
+}
+
+#vendor[placeholder] {
+    line-height: 20px;
+    font-size: 17px;
+}
+
+#quantity {
+    height: 20px;
+}
+#quantity[placeholder] {
+    line-height: 20px;
+    font-size: 17px;
+}
+
+#product_name {
+}
+#product_name[placeholder] {
+}
+
+#catalog_number {
+}
+    #catalog_number[placeholder] {
+    }
+
+#unit_size {
+}
+    #unit_size[placeholder] {
+    }
+
+#units {
+}
+    #units[placeholder] {
+    }
+
+#action_submit {
+}
+
+
+
+#ofl_body {
+    color: #4F84C4;
 }
 
 #order_form_header {
@@ -17,102 +59,102 @@
 }
 
 .go_to_btn {
-    font-size: 33px; 
+    font-size: 33px;
 }
+
 #landing_head {
     text-align: center;
     font-size: 39px;
 }
 
 .example_entryonBackOrder {
-	color: #FF4500;
-	max-width: auto; 
-	border-style: solid;
-	border-color: white;
-	padding: 10px;
-	margin: 20px;
-	text-align: center;
+    color: #FF4500;
+    max-width: auto;
+    border-style: solid;
+    border-color: white;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
 }
+
 .highlighted {
-	color: #FF4500;
-	max-width: auto; 
-	border-style: solid;
-	border-color: white;
-	padding: 10px;
-	margin: 20px;
-	text-align: center;
+    color: #FF4500;
+    max-width: auto;
+    border-style: solid;
+    border-color: white;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
 }
 
 .cap_desc {
-	color: white;
-	text-align: center;
-	margin-top: 80px; 
+    color: white;
+    text-align: center;
+    margin-top: 80px;
 }
 
 form label {
-	color: black;
-	display: inline-block;
-	width: 200px;
+    color: black;
+    display: inline-block;
+    width: 200px;
 }
 
 form .order_cells {
-	display: inline-block;
+    display: inline-block;
 }
 
 h1 {
-	color: white;
+    color: white;
 }
 
 
 .login_body {
-	text-align: center;
+    text-align: center;
 }
 
 .form_head {
-	padding: 20px;
+    padding: 20px;
 }
 
 
 
 .submit_button {
-	margin: auto;
-	text-align: center;
-	padding: 10px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
 }
 
 .ing_name {
-	color: white;
-	margin: 15px;
-	text-align: center;
+    color: white;
+    margin: 15px;
+    text-align: center;
 }
 
 
 body {
-	background-color: #0D254C;
-
+    background-color: #0D254C;
 }
 
 
 .mock_form {
-	color: white;
+    color: white;
 }
 
 .example_entry {
-	color: white;
-	max-width: auto; 
-	border-style: solid;
-	border-color: white;
-	padding: 10px;
-	margin: 20px;
-	text-align: center;
-
+    color: white;
+    max-width: auto;
+    border-style: solid;
+    border-color: white;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
 }
 
 
-/* mouse over link */
-.example_entry:hover {
-    color: #D3D3D3;
-}
+    /* mouse over link */
+    .example_entry:hover {
+        color: #D3D3D3;
+    }
 
 ul {
     list-style-type: none;
@@ -122,4 +164,3 @@ li {
     width: 100%;
     text-align: center;
 }
-

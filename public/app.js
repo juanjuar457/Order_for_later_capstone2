@@ -61,11 +61,26 @@ var mock_data = {
 
 function  init_main_form () {
 
-    for(i=0; i < state.form_data.units.length; i++){  //sets up the drop down with the units. 
+    for(i=0; i < state.form_data.units.length; i++){  //initilizes the drop down for order form 
         $('#units').append('<option value="' + state.form_data.units[i].value +'">' + state.form_data.units[i].name +'</option>') 
     };  
 
 };
+
+//**** start HERE! 5/4
+//need to make ajax call to get and loop through materials and add them to the state. 
+//var url = 'http://localhost:8080/materials'
+//$.ajax({
+//    type: "GET",
+//    url: url,
+//    data: JSON.stringify(material),
+//    contentType: "application/json; charset=utf-8",
+//    dataType: "json",
+//    success: function (data) {
+//        render_material_list();
+//    }
+//})
+
 
 //MIGHT NEED TO ADJUST THIS LATER FOR LOGIN FUNCTIONS 
 init_main_form();
@@ -141,10 +156,6 @@ $('#main_submit').submit(function(event){ //id is in main_page.html
     }); 
 });
 
-
-//WORKING PUT AND SETBACKORDER FUNCTION...
-//ajax, update state, call render material list to display 
-
 function delete_material( event, id) {   
     // event.stopPropigation(); 
     $.ajax({ 
@@ -169,8 +180,7 @@ function delete_material( event, id) {
     });
 }
 
-// $('#requested_materials').click().removeClass('example_entry');
-
+//for backorder highlight! 
 $('.example_entry').click( function(event) {
    $(this).addClass('highlighted');
 })
