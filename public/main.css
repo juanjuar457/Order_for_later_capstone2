@@ -5,46 +5,65 @@
 
 #vendor {
     height: 20px;
-    width: 16%;
 }
 
-#vendor[placeholder] {
-    line-height: 20px;
-    font-size: 12px;
-
-}
+    #vendor[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
+    }
 
 #quantity {
     height: 20px;
 }
-#quantity[placeholder] {
-    line-height: 20px;
-    font-size: 12px;
+
+    #quantity[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
+    }
+
+#product_name {
+    height: 20px;
 }
 
-/*start here stop make the inupt cells match!*/ 
-#product_name {
-}
-#product_name[placeholder] {
-}
+    #product_name[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
+    }
 
 #catalog_number {
+    height: 20px;
 }
+
     #catalog_number[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
     }
 
 #unit_size {
+    height: 20px;
 }
+
     #unit_size[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
     }
 
 #units {
+    height: 20px;
 }
+
     #units[placeholder] {
+        line-height: 20px;
+        font-size: 12px;
     }
 
 #action_submit {
+    height: 20px;
+    font-size: 12px;
+    padding: -65px;
 }
+
+
 
 
 
@@ -72,7 +91,6 @@
 
 .example_entryonBackOrder {
     color: #FF4500;
-    
     border-style: solid;
     border-color: white;
     text-align: left;
@@ -143,10 +161,8 @@ body {
 
 .example_entry {
     color: white;
-    
     border-style: solid;
     border-color: white;
-   
     text-align: left;
 }
 
