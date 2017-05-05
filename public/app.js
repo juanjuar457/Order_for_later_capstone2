@@ -60,19 +60,19 @@ function init_render_material() {
 
 function get_render_material() {
     console.log('render function 2') //got here no problem 
-    console.log(state.requested_materials[0].materials.length) //app is getting here no problem -jj 
+    console.log(state.requested_materials[0].materials.length) //this is the one you want to render. 
     var dom = $('#requested_materials');
     dom.empty(); //flushes out material
 
-    for (i = 0; i < state.requested_materials.length; i++) {
-        dom.append('<div class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
-            state.requested_materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
-            '<div class="col-md-1">' + state.requested_materials[i].quantity + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].product_name + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].catalog_number + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].unit_size + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].units + '</div>' +
-            '<div class="col-md-1"><i onclick="delete_material(this, \'' + state.requested_materials[i].id + '\')" class="glyphicon glyphicon-remove pull-right"></i></div>' +
+    for (i = 0; i < state.requested_materials[0].materials.length; i++) {
+        dom.append('<div class="row example_entry ' + (state.requested_materials[0].materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
+            state.requested_materials[0].materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[0].materials[i].vendor + '</div>' +
+            '<div class="col-md-1">' + state.requested_materials[0].materials[i].quantity + '</div>' +
+            '<div class="col-md-2">' + state.requested_materials[0].materials[i].product_name + '</div>' +
+            '<div class="col-md-2">' + state.requested_materials[0].materials[i].catalog_number + '</div>' +
+            '<div class="col-md-2">' + state.requested_materials[0].materials[i].unit_size + '</div>' +
+            '<div class="col-md-2">' + state.requested_materials[0].materials[i].units + '</div>' +
+            '<div class="col-md-1"><i onclick="delete_material(this, \'' + state.requested_materials[0].materials[i].id + '\')" class="glyphicon glyphicon-remove pull-right"></i></div>' +
             '</div>');
     }
 }
