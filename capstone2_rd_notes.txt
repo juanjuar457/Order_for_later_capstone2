@@ -1,0 +1,139 @@
+fixing the order form styles.. 
+
+then add the get logic to the front end to render 
+the materials on the DB when 
+ajax call and render loop etc.. 
+state transfer etc.. 
+
+
+styling>> 
+top header **
+title of cells to dark 
+input cells are to big with text! 
+align the added materials to align with the input cells. 
+make the top input cells align to one size, Drop down is off. 
+text and alignment in the added materials must match the input cells!!
+
+pencil bs was messing with the text styles, for some reason?? 
+built in styles were autofilling with some random bs 
+relative position etc... 
+
+drop down has an id of units! use the #units to style it mang! 
+
+
+target #units and #ofl_body
+
+looks like styling on the options tag is ! working! 
+looks like its ignored! might just have to style the other input cells 
+around the options at the end. 
+
+to style the input cells you have to make the input class and 
+do input-class[placeholder] {//blah}
+to do the height of the box, looks like 15px or so works just fine
+
+also need to re style the set back order to a color! 
+and explain those directions somewhere!
+nodestone mlab and clean folders to open on default 
+mlab hook up 
+
+5/5>>>>>>>>>>>>>>>>>>>>>>>>
+-ofl main page style still fucked
+-can't target the options drop down that gets created??? Seems to ignore any styles we put on it! 
+-line up the input cells and match the palceholder and active text, using the options drop down as the size frame for all of them...
+-figure logic for adding the init get on page open.. 
+-hook up mlab and deploy to heroku! 
+-also noticed that the vs files in my folder were there now?? do they do anything to the web render / github?? 
+	-noticed b/c when i used the upload to git hub w/ the vs files the arrow pics were kind of weird looking 
+
+-style **
+-logic for get xx
+-mlab upload 
+-clean out css**
+-not sure where the add button is getting its styles from?? 
+back order button and delete === broken on init get!! 
+"" and 			"" still ok on newely created materials. 
+resizing is fucked
+styling is ok, bootstrap auto % on all props, had to match
+fix del arrow later..
+will we need the placeholder text vs the top heading desc..??? 
+
+page init > get ajax > put in state > render state > 
+standby to add new entries
+API === materials[].materials[] have to point to root of the array to get it out and render it! 
+
+** looks like array render won't work, need to add them 1 by 1
+make anothwer render function that won't flush the dom?? probably why its undefined! 
+
+
+React stuff
+
+102-111 
+for get init 
+ajax call 
+diff is you have to loop through materials and add them to state 
+1 at a time
+
+or take array out of data and set === array in state 
+then call render material list and 
+all should be rendered
+
+kg and format to look more like table, padding, margins etcc.. fix me
+heading colors, and font size could come down just headers 
+fix unit sizes so you can just put in numbers.. 
+center out OFL header, or header row so its diff from other page 
+on top. 
+make back to landing as little button up top
+
+need to figure how stuff is getting rendered and render whats in the 
+db out to the client..
+
+Add button OMG fix that height! 
+
+if the order on the schema is diff the order isn't consitent through the 
+client through the server! 
+
+array is returning back the data in a diff order.. 
+catalog_number
+:
+"te"
+id
+:
+"590b509378978421183a632a"
+onBackOrder
+:
+false
+product_name
+:
+"tes"
+quantity
+:
+"test"
+unit_size
+:
+"tes"
+units
+:
+"gm"
+vendor
+:
+"test"
+
+order may not actually matter.... 
+
+'product' vs 'product_name' in client vs server..
+
+fix the placeholder text size, might be too big....
+
+
+mongod --dbpath data/db
+part 2 also have to make the setbackorder and delete work on the old stuff....
+
+the back to landing is broken
+
+
+5/5 - get init works!!! 
+del button is broken
+set backorder is broken too. 
+because of where the info on the db sleeps we got to go to state.requested_materials[0].materials.length and probably make 
+a seprate set of set backorder and delete ajax calls pointing to that insted of the default which was just state.requested_materials. 
+-set backorder color styles 
