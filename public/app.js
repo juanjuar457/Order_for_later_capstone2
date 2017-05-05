@@ -23,38 +23,6 @@ var state = {
 	requested_materials: [],
 }
 
-var mock_data = {
-	items_ordered: [
-		{
-			vendor: "",
-			quantity: "",
-			product_name: "",
-			catalog_number: "",
-			unit_size: "",
-		}
-	],
-
-	user: [
-		{
-			id: "9181",
-			name: "Rebecca",	
-			type: 'admin'
-		}, //say admin or guest
-
-		{
-			id: "1189",
-			name: "Dolcemar",
-			type: 'guest',
-		}
-	],
-
-	company: {
-		id: 7744,
-		name: "Solutions Pharmacy"	
-	}
-}; 
-
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //>>>>>>>>> STATE MODIFIERS<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -64,26 +32,52 @@ function  init_main_form () {
     for(i=0; i < state.form_data.units.length; i++){  //initilizes the drop down for order form 
         $('#units').append('<option value="' + state.form_data.units[i].value +'">' + state.form_data.units[i].name +'</option>') 
     };  
+    init_render_material()
 
 };
 
 //**** start HERE! 5/4
 //need to make ajax call to get and loop through materials and add them to the state. 
-//var url = 'http://localhost:8080/materials'
-//$.ajax({
-//    type: "GET",
-//    url: url,
-//    data: JSON.stringify(material),
-//    contentType: "application/json; charset=utf-8",
-//    dataType: "json",
-//    success: function (data) {
-//        render_material_list();
+function init_render_material() {
+    var materials = []
+    var url = 'http://localhost:8080/materials'
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: JSON.stringify(materials),
+        //material = data.materials,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (materials) {  
+            state.requested_materials.push(materials.materials);          
+            render_material_list();         
+        }
+    })
+}
+
+
+//function init_render_material() {
+//     console.log('Test to render') 
+//    console.log(state.requested_materials) //app is getting here no problem -jj 
+//    var dom = $('#requested_materials');
+//    dom.empty(); //flushes out material
+
+//    for (i = 0; i < state.requested_materials.length; i++) {
+//        dom.append('<div class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
+//            state.requested_materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
+//            '<div class="col-md-1">' + state.requested_materials[i].quantity + '</div>' +
+//            '<div class="col-md-2">' + state.requested_materials[i].product_name + '</div>' +
+//            '<div class="col-md-2">' + state.requested_materials[i].catalog_number + '</div>' +
+//            '<div class="col-md-2">' + state.requested_materials[i].unit_size + '</div>' +
+//            '<div class="col-md-2">' + state.requested_materials[i].units + '</div>' +
+//            '<div class="col-md-1"><i onclick="delete_material(this, \'' + state.requested_materials[i].id + '\')" class="glyphicon glyphicon-remove pull-right"></i></div>' +
+//            '</div>');
 //    }
-//})
+//}
 
 
 //MIGHT NEED TO ADJUST THIS LATER FOR LOGIN FUNCTIONS 
-init_main_form();
+init_main_form(); // initializes the drop down for the order form  
 
 //CONTROL ARM HERE 
 function add_material_click (event) {
@@ -278,6 +272,40 @@ function check_pass_guest (event) {
 
 }
 
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//>>>>>>>>>MOCK DATA STATE  NOT IN USE IN NODE CAPSTONE!! <<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//var mock_data = {
+//	items_ordered: [
+//		{
+//			vendor: "",
+//			quantity: "",
+//			product_name: "",
+//			catalog_number: "",
+//			unit_size: "",
+//		}
+//	],
+
+//	user: [
+//		{
+//			id: "9181",
+//			name: "Rebecca",	
+//			type: 'admin'
+//		}, //say admin or guest
+
+//		{
+//			id: "1189",
+//			name: "Dolcemar",
+//			type: 'guest',6
+//		}
+//	],
+
+//	company: {
+//		id: 7744,
+//		name: "Solutions Pharmacy"	
+//	}
+//}; 
 
 
 
