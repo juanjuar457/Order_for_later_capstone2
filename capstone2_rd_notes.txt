@@ -63,6 +63,12 @@ API === materials[].materials[] have to point to root of the array to get it out
 
 ** looks like array render won't work, need to add them 1 by 1
 make anothwer render function that won't flush the dom?? probably why its undefined! 
+->> org notes,
+.. fix the back order and delete buttons on materials already in the db 
+fix add button?? 
+styles on the options tag?? 
+fix landing page desc
+prosper..
 
 
 React stuff
@@ -137,3 +143,11 @@ set backorder is broken too.
 because of where the info on the db sleeps we got to go to state.requested_materials[0].materials.length and probably make 
 a seprate set of set backorder and delete ajax calls pointing to that insted of the default which was just state.requested_materials. 
 -set backorder color styles 
+
+change color scheme, light bckgrnd + dark text 
+nuke the db, and add 10 rows on submit 
+with actual stuff 
+footer on the bottom, lil copyright stuff 
+back to landing at bottom and top! >> change to home
+dark backtournd header row on OFL header or left justified and have home button on right 
+
