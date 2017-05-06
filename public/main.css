@@ -60,7 +60,7 @@
 #action_submit {
     height: 20px;
     font-size: 12px;
-    /*padding: -65px;*/
+    
 }
 
 #ofl_body {
@@ -92,7 +92,7 @@
     text-align: left;
 }
 
-.highlighted {
+.onBackOrder {
     color: #FF4500;
     max-width: auto;
     border-style: solid;
@@ -148,6 +148,7 @@ h1 {
 
 body {
     background-color: #0D254C;
+    font-size: 1.6em;
 }
 
 

@@ -32,50 +32,34 @@ function  init_main_form () {
     for(i=0; i < state.form_data.units.length; i++){  //initilizes the drop down for order form 
         $('#units').append('<option value="' + state.form_data.units[i].value +'">' + state.form_data.units[i].name +'</option>') 
     };  
-    init_render_material()
+    PopulateRequestedMaterials(); 
+    
 
 };
 
-//**** start HERE! 5/4
+//****INITIAL GET CALL + RENDER*******
 //need to make ajax call to get and loop through materials and add them to the state. 
-function init_render_material() {
-    var material = {}
+function PopulateRequestedMaterials() {  
     var url = 'http://localhost:8080/materials'
     $.ajax({
         type: "GET",
-        url: url,
-        data: JSON.stringify(material),
-        //material = data.materials,
-        contentType: "application/json; charset=utf-8",
+        url: url,            
         dataType: "json",
-        success: function (material) {  
-            console.log(material);
-            state.requested_materials.push(material);
-            console.log(state.requested_materials)
-            get_render_material();         
+        success: function (data) {     
+            state.requested_materials = data.materials;            
+            render_material_list();    
+            
         }
     })
 }
 
+//get rid of underscores make it all proper case like 41, make var names camel case if any not.
+//take out console logs and unused code 
+//re name all funcs and vars to make sense use proper plurality when naming anything
 
-function get_render_material() {
-    console.log('render function 2') //got here no problem 
-    console.log(state.requested_materials[0].materials.length) //this is the one you want to render. 
-    var dom = $('#requested_materials');
-    dom.empty(); //flushes out material
-
-    for (i = 0; i < state.requested_materials[0].materials.length; i++) {
-        dom.append('<div class="row example_entry ' + (state.requested_materials[0].materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
-            state.requested_materials[0].materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[0].materials[i].vendor + '</div>' +
-            '<div class="col-md-1">' + state.requested_materials[0].materials[i].quantity + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[0].materials[i].product_name + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[0].materials[i].catalog_number + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[0].materials[i].unit_size + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[0].materials[i].units + '</div>' +
-            '<div class="col-md-1"><i onclick="delete_material(this, \'' + state.requested_materials[0].materials[i].id + '\')" class="glyphicon glyphicon-remove pull-right"></i></div>' +
-            '</div>');
-    }
-}
+//will need a new set backorder AND delete, to match the new state.requested_materials[0].materials[i].onBackOrder
+//kip the other ones that are rendering the entered materials stop at requested_materials.[blah]
+//
 
 
 //MIGHT NEED TO ADJUST THIS LATER FOR LOGIN FUNCTIONS 
@@ -100,17 +84,17 @@ function add_material () {
 
 }
 
-function setBackOrder(id){
+function setBackOrder(id) {
     var material = null;
-    for(i=0; i < state.requested_materials.length; i++){
-        if(id === state.requested_materials[i].id){
-            state.requested_materials[i].onBackOrder = !state.requested_materials[i].onBackOrder; 
+    for (i = 0; i < state.requested_materials.length; i++) {
+        if (id === state.requested_materials[i].id) {
+            state.requested_materials[i].onBackOrder = !state.requested_materials[i].onBackOrder;
             material = state.requested_materials[i];
-            break; 
+            break;
         }
     }
-        var url = 'http://localhost:8080/materials'
-        $.ajax({
+    var url = 'http://localhost:8080/materials'
+    $.ajax({
         type: "PUT",
         url: url,
         data: JSON.stringify(material),
@@ -119,9 +103,8 @@ function setBackOrder(id){
         success: function (data) {
             render_material_list();
         }
-    }); 
+    });
 }
-
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //>>>>>>>>> EVENT LISTENERS<<<<<<<<<<<<<<<<
@@ -152,17 +135,17 @@ $('#main_submit').submit(function(event){ //id is in main_page.html
     }); 
 });
 
-function delete_material( event, id) {   
-    // event.stopPropigation(); 
+function delete_material(event) {   
+    event.stopPropagation();
     $.ajax({ 
-        id: id,
-        url: 'http://localhost:8080/materials/' + id, 
+        id: event.data.id,
+        url: 'http://localhost:8080/materials/' + event.data.id, 
         // data: this.id, prop might work, not this way though.. 
         type: 'DELETE',
         success: function() {
             for(i=0; i < state.requested_materials.length; i++){
-                console.log(this.id,state.requested_materials[i].id,this.id === state.requested_materials[i].id);
-                if(this.id === state.requested_materials[i].id){
+                
+                if(event.data.id === state.requested_materials[i].id){
                     state.requested_materials.splice(i,1)
                      //returns empty array... if slice(i,0)
                     break;
@@ -176,10 +159,7 @@ function delete_material( event, id) {
     });
 }
 
-//for backorder highlight! 
-$('.example_entry').click( function(event) {
-   $(this).addClass('highlighted');
-})
+
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //>>>>>>>>>RENDER STATE<<<<<<<<<<<<<<<<<<<<<
@@ -191,7 +171,8 @@ function render_material_list() {
     var dom = $('#requested_materials');
     dom.empty(); //flushes out material
     
-    for(i=0; i < state.requested_materials.length; i++){
+    for (i = 0; i < state.requested_materials.length; i++){
+       
         dom.append('<div class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
             state.requested_materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
             '<div class="col-md-1">' + state.requested_materials[i].quantity + '</div>' +
@@ -199,11 +180,14 @@ function render_material_list() {
             '<div class="col-md-2">' + state.requested_materials[i].catalog_number + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].unit_size + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].units + '</div>' +
-            '<div class="col-md-1"><i onclick="delete_material(this, \'' + state.requested_materials[i].id + '\')" class="glyphicon glyphicon-remove pull-right"></i></div>' +
-            '</div>');
+            '<div class="col-md-1"><i id="' + state.requested_materials[i].id + '" class="glyphicon glyphicon-remove pull-right"></i></div>' +
+            '</div>');      
+        $('#' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, delete_material);
     }
+    
 }
 
+$("some selector").click({ param1: "Hello", param2: "World" }, cool_function); function cool_function(event) { alert(event.data.param1); alert(event.data.param2); }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //>>>>>>>>>FUNCTIONS FOR LATER USE / NOT IN USE IN NODE CAPSTONE!! <<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
