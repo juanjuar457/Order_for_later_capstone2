@@ -4,8 +4,10 @@
     <title>Capstone 2 - Form page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="main.css">
+</head>
     <body id="ofl_body" class="container">
         <h1 id="order_form_header">ORDER FOR LATER</h1>
+        <button class="glyphicon glyphicon-home"><a id="landingLink" href="/"> Home</a></button>
         <div id="order_form_row" class="row">
             <div class="col-md-2">Vendor</div>
             <div class="col-md-1">Quantity</div>
@@ -22,14 +24,13 @@
             <input id="catalog_number" type="text" class="col-md-2" placeholder="46203140622.." required>
             <input id="unit_size" type="text" class="col-md-2" placeholder="10, 1000" required>
             <select id="units" class="col-md-2" required> </select>
-            <button id="action_submit" type="submit" class="btn btn-primary col-md-1">Add</button>
-            <!--may need <i> tag </i> to wrap with glyph button?--> 
+            <button id="action_submit" type="submit" class="btn-group btn-group-lg col-md-1">Add</button>
         </form>
-
         <!-- for appended entries-->
         <div id="requested_materials"></div>
-        <!-- 	<a href="index.html">back to login]</a> -->
-        <a href="landing.html">back to landing page</a>
+        <div class="panel panel-default OflFooter">
+            <div class="panel-footer OflFooter">Order For Later - Juan Juarez Copyright <div class="glyphicon glyphicon-copyright-mark"></div> 2017</div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
