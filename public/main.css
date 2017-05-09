@@ -4,10 +4,14 @@
 }
 
 .OflFooter {
-    background-color: #F6D155; 
-    border-top:#F6D155;
-    border-color: #F6D155;
+    background-color: saddlebrown;     
     text-align: center;
+    width: 100%;
+    position: fixed;
+    left: 0; 
+    bottom: 0;
+    color: #FFF;
+    font-weight: 600px;
 }
 
 #HomeButton {
@@ -98,21 +102,10 @@
     font-size: 39px;
 }
 
-.example_entryonBackOrder {
-    color: #FF4500;
-    border-style: solid;
-    border-color: white;
-    text-align: left;
-}
-
-.onBackOrder {
-    color: white;
-    max-width: auto;
-    border-style: solid;
-    border-color: ;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
+.example_entry.onBackOrder {
+    color: #FF4500; 
+    background-color: aqua;
+    border-color: white;    
 }
 
 #CapstoneDescription {

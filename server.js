@@ -38,7 +38,7 @@ app.get('/materials', (req, res) => {
 }); 
 
 //>>>>>>>>>NOT IN USE IN NODE CAPSTONE - FROM CLEINT SIDE 4/22<<<<<<<<<<<<<<<<<<<<
-app.get('/materials/:id', (req, res) => {
+app.get('/material/:id', (req, res) => {
   Material
     // this is a convenience method Mongoose provides for searching
     // by the object _id property
@@ -55,7 +55,7 @@ app.get('/materials/:id', (req, res) => {
 //>>>>>>>>>POST ENDPOINTS <<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 
-app.post('/materials', (req, res) => {
+app.post('/savematerial', (req, res) => {
   console.log(req.body);
 	const requiredFields = ['vendor', 'quantity', 'product_name', 'catalog_number', 'unit_size', 'units'];
 	for (let i=0; i<requiredFields.length; i++) {
@@ -87,9 +87,9 @@ app.post('/materials', (req, res) => {
 //>>>>>>>>>PUT ENDPOINTS <<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 
-app.put('/materials', (req, res) => {
+app.put('/togglebackorder', (req, res) => {
   console.log(req.body);
-  const requiredFields = ['vendor', 'quantity', 'product_name', 'catalog_number', 'unit_size', 'units'];
+  const requiredFields = ['id', 'onBackOrder'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -100,15 +100,16 @@ app.put('/materials', (req, res) => {
   }
 
   Material
-    .create({
-      vendor: req.body.vendor,
-      quantity: req.body.quantity,
-      product_name: req.body.product_name,
-      catalog_number: req.body.catalog_number,
-      unit_size: req.body.unit_size,
-      units: req.body.units})
-    .then(
-      material => res.status(201).json(material.apiRepr()))
+      .update(
+      req.body.id,
+      {
+          $set: {
+              onBackOrder: req.body.onBackOrder
+          }
+      })
+      .exec()
+      .then(
+      res.status(201).json({ message: 'done' }))
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'}); 
@@ -119,7 +120,7 @@ app.put('/materials', (req, res) => {
 //>>>>>>>>>DELETE ENDPOINTS <<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 
-app.delete('/materials/:id', (req, res) => {
+app.delete('/deletematerial/:id', (req, res) => {
   console.log('delete materials', req.params.id);
   Material
     .findByIdAndRemove(req.params.id)

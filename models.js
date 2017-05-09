@@ -9,10 +9,10 @@ const MaterialSchema = Schema({
 	quantity: String, //sometimes they have '3UI' for units 
 	product_name: String, 
 	catalog_number: String, 
-	unit_size: String, 
+	unit_size: String, //fix the underscore
 	units: String,
 	createDate: {type: Date, default: Date.now}, 
-  onBackOrder: Boolean 
+    onBackOrder: Boolean 
 });
 
 //not sure how to structre this? ALso don't we need an env file??? 

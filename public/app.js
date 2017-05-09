@@ -40,7 +40,7 @@ function initPageLoad() { //makes dropdwon for units on page load & Populates th
 //****INITIAL GET CALL + RENDER*******
 //need to make ajax call to get and loop through materials and add them to the state. 
 function PopulateRequestedMaterials() {
-    var url = 'http://localhost:8080/materials'
+    var url = '/materials'
     $.ajax({
         type: "GET",
         url: url,
@@ -74,16 +74,16 @@ function addMaterial() {
 
 }
 
-function setBackOrder(id) {
+function setBackOrder(event) {
     var material = null;
     for (i = 0; i < state.requested_materials.length; i++) {
-        if (id === state.requested_materials[i].id) {
+        if (event.data.id === state.requested_materials[i].id) {
             state.requested_materials[i].onBackOrder = !state.requested_materials[i].onBackOrder;
             material = state.requested_materials[i];
             break;
         }
     }
-    var url = 'http://localhost:8080/materials'
+    var url = '/togglebackorder' 
     $.ajax({
         type: "PUT",
         url: url,
@@ -91,6 +91,7 @@ function setBackOrder(id) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            console.log('im back');
             renderMaterial();
         }
     });
@@ -102,7 +103,7 @@ function setBackOrder(id) {
 
 $('#main_submit').submit(function (event) { //id is in main_page.html
     event.preventDefault()
-    var url = 'http://localhost:8080/materials'
+    var url = '/savematerial'
     var material = {
         vendor: $('#vendor').val(),
         quantity: $('#quantity').val(),
@@ -125,11 +126,12 @@ $('#main_submit').submit(function (event) { //id is in main_page.html
     });
 });
 
-function delete_material(event) {
-    event.stopPropagation();
+function deleteMaterial(event) {   
+    event.originalEvent.cancelBubble = true;
+    event.originalEvent.stopPropagation();
     $.ajax({
         id: event.data.id,
-        url: 'http://localhost:8080/materials/' + event.data.id,
+        url: '/deletematerial/' + event.data.id,
 
         type: 'DELETE',
         success: function () {
@@ -157,16 +159,16 @@ function renderMaterial() {
     dom.empty(); //flushes out material
 
     for (i = 0; i < state.requested_materials.length; i++) {
-        dom.append('<div class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '" onclick="setBackOrder(\'' +
-            state.requested_materials[i].id + '\')"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
+        dom.append('<div id="R' + state.requested_materials[i].id + '" class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
             '<div class="col-md-1">' + state.requested_materials[i].quantity + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].product_name + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].catalog_number + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].unit_size + '</div>' +
             '<div class="col-md-2">' + state.requested_materials[i].units + '</div>' +
-            '<div class="col-md-1"><i id="' + state.requested_materials[i].id + '" class="glyphicon glyphicon-remove pull-right"></i></div>' +
+            '<div class="col-md-1"><i id="D' + state.requested_materials[i].id + '" class="glyphicon glyphicon-remove pull-right"></i></div>' +
             '</div>');
-        $('#' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, delete_material);
+        $('#D' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, deleteMaterial);
+        $('#R' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, setBackOrder);
     }
 }
 
