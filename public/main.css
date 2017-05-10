@@ -3,16 +3,34 @@
     font-weight: 5px;
 }
 
+.OflHomeButton {
+    color: #FFF; 
+    display: inline-block;
+}
+
+
+.OflHeader {
+    background-color: #8B4513;
+    position: relative;
+    text-align: center;
+    width: 100%;   
+    left: 0;
+    color: #FFF;
+    font-weight: 600px;
+}
+
 .OflFooter {
-    background-color: saddlebrown;     
+    background-color: #8B4513;
     text-align: center;
     width: 100%;
     position: fixed;
-    left: 0; 
+    left: 0;
     bottom: 0;
     color: #FFF;
     font-weight: 600px;
 }
+
+/*Boostsrap Overrides for Order Form*/
 
 #HomeButton {
     color: black;
@@ -80,6 +98,9 @@
     font-size: 12px;
 }
 
+
+
+
 #ofl_body {
     color: black;
 }
@@ -93,7 +114,8 @@
     font-size: 30px;
 }
 
-.go_to_btn {
+/*landing page main button*/
+.mainButton {
     font-size: 33px;
 }
 
@@ -128,26 +150,11 @@ h1 {
     color: black;
 }
 
-.login_body {
-    text-align: center;
-}
-
-.form_head {
-    padding: 20px;
-}
-
 .submit_button {
     margin: auto;
     text-align: center;
     padding: 10px;
 }
-
-.ing_name {
-    color: white;
-    margin: 15px;
-    text-align: center;
-}
-
 
 body {
     background-color: #F6D155;
@@ -155,15 +162,12 @@ body {
 }
 
 
-.mock_form {
-    color: black;
-}
-
 .example_entry {
     color: black;
     border-style: solid;
-    border-color: black;
+    /*border-color: black;*/
     text-align: left;
+    background-color: white;
 }
 
 
