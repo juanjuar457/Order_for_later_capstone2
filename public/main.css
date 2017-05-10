@@ -3,10 +3,13 @@
     font-weight: 5px;
 }
 
+
 .OflHomeButton {
     color: #FFF; 
     display: inline-block;
+    height: auto;
 }
+
 
 
 .OflHeader {
@@ -19,6 +22,15 @@
     font-weight: 600px;
 }
 
+#backOrderSquare {
+    width: 20px;
+    height: 20px;
+    background: #B76BA3;
+    width: 9%;
+     
+}
+
+
 .OflFooter {
     background-color: #8B4513;
     text-align: center;
@@ -27,11 +39,11 @@
     left: 0;
     bottom: 0;
     color: #FFF;
-    font-weight: 600px;
+    font-weight: 600;
 }
 
 /*Boostsrap Overrides for Order Form*/
-
+/*perhaps better to do a multi selector with in 1 declecration??*/ 
 #HomeButton {
     color: black;
 }
@@ -105,9 +117,6 @@
     color: black;
 }
 
-#order_form_header {
-    text-align: center;
-}
 
 .par_desc {
     padding: 20px;
@@ -125,9 +134,8 @@
 }
 
 .example_entry.onBackOrder {
-    color: #FF4500; 
-    background-color: aqua;
-    border-color: white;    
+    background-color: #B76BA3;
+    border-color: white;
 }
 
 #CapstoneDescription {
@@ -142,9 +150,6 @@ form label {
     width: 200px;
 }
 
-form .order_cells {
-    display: inline-block;
-}
 
 h1 {
     color: black;
