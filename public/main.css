@@ -4,32 +4,35 @@
 }
 
 
-.OflHomeButton {
+.OflHomeButton, .OflHomeButton:hover {
     color: #FFF; 
     display: inline-block;
-    height: auto;
+    font-size: 18px;
+    margin-right: 20px;
+    text-decoration: none;
+    line-height: 40px;
+    vertical-align: middle;
+
 }
 
 
 
 .OflHeader {
-    background-color: #8B4513;
-    position: relative;
+    background-color: #8B4513;   
     text-align: center;
-    width: 100%;   
-    left: 0;
+    width: 100%;      
     color: #FFF;
     font-weight: 600px;
+    margin-top: 0;
 }
 
 #backOrderSquare {
-    width: 20px;
-    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     background: #B76BA3;
-    width: 9%;
-     
+    line-height: 30px;
+    vertical-align: middle;
 }
-
 
 .OflFooter {
     background-color: #8B4513;
@@ -43,89 +46,24 @@
 }
 
 /*Boostsrap Overrides for Order Form*/
-/*perhaps better to do a multi selector with in 1 declecration??*/ 
-#HomeButton {
+/*perhaps better to do a multi selector with in 1 declecration??*/
+.landingButton, .landingButton:hover {
     color: black;
+    font-size: 33px;
+    text-decoration: none;
 }
 
 #landingLink {
-    color: black;
+    color: #000;
 }
 
-#vendor {
-    height: 20px;
+select {
+    height: 28px;
 }
-
-    #vendor[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-
-#quantity {
-    height: 20px;
-}
-
-    #quantity[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-
-#product_name {
-    height: 20px;
-}
-
-    #product_name[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-
-#catalog_number {
-    height: 20px;
-}
-
-    #catalog_number[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-
-#unit_size {
-    height: 20px;
-}
-
-    #unit_size[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-#units {
-    height: 20px;
-}
-
-    #units[placeholder] {
-        line-height: 20px;
-        font-size: 12px;
-    }
-
-#action_submit {
-    height: 20px;
-    font-size: 12px;
-}
-
-
-
-
-#ofl_body {
-    color: black;
-}
-
 
 .par_desc {
     padding: 20px;
     font-size: 30px;
-}
-
-/*landing page main button*/
-.mainButton {
-    font-size: 33px;
 }
 
 #landing_head {
@@ -135,24 +73,19 @@
 
 .example_entry.onBackOrder {
     background-color: #B76BA3;
-    border-color: white;
+    border-color: #FFF;
 }
 
 #CapstoneDescription {
-    color: black;
+    color: #000;
     text-align: center;
     margin-top: 80px;
 }
 
 form label {
-    color: black;
+    color: #000;
     display: inline-block;
     width: 200px;
-}
-
-
-h1 {
-    color: black;
 }
 
 .submit_button {
@@ -162,13 +95,17 @@ h1 {
 }
 
 body {
+    padding-bottom: 50px;
+    margin: 0;
+    padding: 0;
     background-color: #F6D155;
     font-size: 1.6em;
+    color: #000;
 }
 
 
 .example_entry {
-    color: black;
+    color: #000;
     border-style: solid;
     /*border-color: black;*/
     text-align: left;

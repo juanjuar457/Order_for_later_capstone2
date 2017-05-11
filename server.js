@@ -56,7 +56,6 @@ app.get('/material/:id', (req, res) => {
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 
 app.post('/savematerial', (req, res) => {
-  console.log(req.body);
 	const requiredFields = ['vendor', 'quantity', 'product_name', 'catalog_number', 'unit_size', 'units'];
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
@@ -87,21 +86,20 @@ app.post('/savematerial', (req, res) => {
 //>>>>>>>>>PUT ENDPOINTS <<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 
-app.put('/togglebackorder', (req, res) => {
-  console.log(req.body);
+app.put('/togglebackorder', (req, res) => { 
   const requiredFields = ['id', 'onBackOrder'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
       const message = `Missing \ ${field}\` in request body`
-      console.error(message); 
       return res.status(400).send(message); 
     }
   }
 
   Material
-      .update(
-      req.body.id,
+      .update({
+          _id: req.body.id
+      },
       {
           $set: {
               onBackOrder: req.body.onBackOrder
@@ -110,9 +108,10 @@ app.put('/togglebackorder', (req, res) => {
       .exec()
       .then(
       res.status(201).json({ message: 'done' }))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({message: 'Internal server error'}); 
+      .catch(err => {     
+          console.error(message);
+          res.status(500).json({ message: 'Internal server error' }); 
+        
       });
 });
 
@@ -120,8 +119,7 @@ app.put('/togglebackorder', (req, res) => {
 //>>>>>>>>>DELETE ENDPOINTS <<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 
-app.delete('/deletematerial/:id', (req, res) => {
-  console.log('delete materials', req.params.id);
+app.delete('/deletematerial/:id', (req, res) => {  
   Material
     .findByIdAndRemove(req.params.id)
     .exec()

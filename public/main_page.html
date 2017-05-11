@@ -5,31 +5,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-    <body id="ofl_body" class="container">
+    <body>
         <h1 class="OflHeader">ORDER FOR LATER           
-            <a href="/" class="glyphicon glyphicon-home OflHomeButton"></a>     
+            <a href="/" class="glyphicon glyphicon-home OflHomeButton pull-right"></a>     
         </h1> 
-        <div id="backOrderSquare">Back Order</div>
-        <div id="order_form_row" class="row">
-            <div class="col-md-2">Vendor</div>
-            <div class="col-md-1">Quantity</div>
-            <div class="col-md-2">Product</div>
-            <div class="col-md-2">Catalog Number</div>
-            <div class="col-md-2">Unit Size</div>
-            <div class="col-md-2">Units</div>
-            <div class="col-md-1">&nbsp;</div>
+        <div class="container">
+            <div class="row">
+                <div id="backOrderSquare" class="col-md-4">*Items on Back Order</div>
+            </div>
+            <div id="order_form_row" class="row">
+                <div class="col-md-2">Vendor</div>
+                <div class="col-md-1">Quantity</div>
+                <div class="col-md-2">Product</div>
+                <div class="col-md-2">Catalog Number</div>
+                <div class="col-md-2">Unit Size</div>
+                <div class="col-md-2">Units</div>
+                <div class="col-md-1">&nbsp;</div>
+            </div>
+            <form id="main_submit" class="row">
+                <input id="vendor" type="text" class="col-md-2" placeholder="Medisca, Letco" required>
+                <input id="quantity" type="text" class="col-md-1" placeholder="Quantity" required>
+                <input id="product_name" type="text" class="col-md-2" placeholder="Progesterone, HCG.. " required>
+                <input id="catalog_number" type="text" class="col-md-2" placeholder="46203140622.." required>
+                <input id="unit_size" type="text" class="col-md-2" placeholder="10, 1000" required>
+                <select id="units" class="col-md-2" required> </select>
+                <button id="action_submit" type="submit" class="btn-group btn-group-lg col-md-1">Add</button>
+            </form>
+            <!-- for appended entries-->
+            <div id="requestedMaterials"></div>
         </div>
-        <form id="main_submit" class="row">
-            <input id="vendor" type="text" class="col-md-2" placeholder="Medisca, Letco" required>
-            <input id="quantity" type="text" class="col-md-1" placeholder="Quantity" required>
-            <input id="product_name" type="text" class="col-md-2" placeholder="Progesterone, HCG.. " required>
-            <input id="catalog_number" type="text" class="col-md-2" placeholder="46203140622.." required>
-            <input id="unit_size" type="text" class="col-md-2" placeholder="10, 1000" required>
-            <select id="units" class="col-md-2" required> </select>
-            <button id="action_submit" type="submit" class="btn-group btn-group-lg col-md-1">Add</button>
-        </form>
-        <!-- for appended entries-->
-        <div id="requested_materials"></div>
         <div class="panel panel-default OflFooter">
             <div class="panel-footer OflFooter">Order For Later - Juan Juarez Copyright <div class="glyphicon glyphicon-copyright-mark"></div> 2017</div>
         </div>

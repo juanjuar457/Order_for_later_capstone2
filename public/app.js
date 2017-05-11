@@ -20,7 +20,7 @@ var state = {
         ], //call to api gets units for you
     },
 
-    requested_materials: [],
+    requestedMaterials: [],
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -33,8 +33,6 @@ function initPageLoad() { //makes dropdwon for units on page load & Populates th
         $('#units').append('<option value="' + state.form_data.units[i].value + '">' + state.form_data.units[i].name + '</option>')
     };
     PopulateRequestedMaterials();
-
-
 };
 
 //****INITIAL GET CALL + RENDER*******
@@ -46,7 +44,7 @@ function PopulateRequestedMaterials() {
         url: url,
         dataType: "json",
         success: function (data) {
-            state.requested_materials = data.materials;
+            state.requestedMaterials = data.materials;
             renderMaterial();
 
         }
@@ -66,7 +64,7 @@ function addMaterial() {
 
     var material = {};
     material.product = $('#product').val();
-    state.requested_materials.push(material);
+    state.requestedMaterials.push(material);
     material.quantity = $('#quantity').val();
     material.vendor = $('#vendor').val();
     material.catalog_number = $('#catalog_number').val();
@@ -76,13 +74,13 @@ function addMaterial() {
 
 function setBackOrder(event) {
     var material = null;
-    for (i = 0; i < state.requested_materials.length; i++) {
-        if (event.data.id === state.requested_materials[i].id) {
-            state.requested_materials[i].onBackOrder = !state.requested_materials[i].onBackOrder;
-            material = state.requested_materials[i];
+    for (i = 0; i < state.requestedMaterials.length; i++) {
+        if (event.data.id === state.requestedMaterials[i].id) {
+            state.requestedMaterials[i].onBackOrder = state.requestedMaterials[i].onBackOrder ? false: true;
+            material = state.requestedMaterials[i];
             break;
         }
-    }
+    } 
     var url = '/togglebackorder' 
     $.ajax({
         type: "PUT",
@@ -90,8 +88,7 @@ function setBackOrder(event) {
         data: JSON.stringify(material),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            console.log('im back');
+        success: function (data) {           
             renderMaterial();
         }
     });
@@ -110,7 +107,8 @@ $('#main_submit').submit(function (event) { //id is in main_page.html
         product_name: $('#product_name').val(),
         catalog_number: $('#catalog_number').val(),
         units: $('#units').val(),
-        unit_size: $('#unit_size').val()
+        unit_size: $('#unit_size').val(),
+        onBackOrder: false
     }
     $.ajax({
         type: "POST",
@@ -120,7 +118,7 @@ $('#main_submit').submit(function (event) { //id is in main_page.html
         dataType: "json",
         success: function (data) {
             material.id = data.id;
-            state.requested_materials.push(material);
+            state.requestedMaterials.push(material);
             renderMaterial();
         }
     });
@@ -135,10 +133,10 @@ function deleteMaterial(event) {
 
         type: 'DELETE',
         success: function () {
-            for (i = 0; i < state.requested_materials.length; i++) {
+            for (i = 0; i < state.requestedMaterials.length; i++) {
 
-                if (event.data.id === state.requested_materials[i].id) {
-                    state.requested_materials.splice(i, 1)
+                if (event.data.id === state.requestedMaterials[i].id) {
+                    state.requestedMaterials.splice(i, 1)
 
                     break;
                 }
@@ -154,21 +152,20 @@ function deleteMaterial(event) {
 //>>>>>>>>>RENDER STATE<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-function renderMaterial() {
-    var dom = $('#requested_materials');
-    dom.empty(); //flushes out material
-
-    for (i = 0; i < state.requested_materials.length; i++) {
-        dom.append('<div id="R' + state.requested_materials[i].id + '" class="row example_entry ' + (state.requested_materials[i].onBackOrder ? "onBackOrder" : "") + '"><div class="col-md-2">' + state.requested_materials[i].vendor + '</div>' +
-            '<div class="col-md-1">' + state.requested_materials[i].quantity + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].product_name + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].catalog_number + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].unit_size + '</div>' +
-            '<div class="col-md-2">' + state.requested_materials[i].units + '</div>' +
-            '<div class="col-md-1"><i id="D' + state.requested_materials[i].id + '" class="glyphicon glyphicon-remove pull-right"></i></div>' +
+function renderMaterial() {   
+    var dom = $('#requestedMaterials');    
+    dom.empty(); //flushes out material   
+    for (i = 0; i < state.requestedMaterials.length; i++) {
+        dom.append('<div id="R' + state.requestedMaterials[i].id + '" class="row example_entry ' + (state.requestedMaterials[i].onBackOrder ? "onBackOrder" : "") + '"><div class="col-md-2">' + state.requestedMaterials[i].vendor + '</div>' +
+            '<div class="col-md-1">' + state.requestedMaterials[i].quantity + '</div>' +
+            '<div class="col-md-2">' + state.requestedMaterials[i].product_name + '</div>' +
+            '<div class="col-md-2">' + state.requestedMaterials[i].catalog_number + '</div>' +
+            '<div class="col-md-2">' + state.requestedMaterials[i].unit_size + '</div>' +
+            '<div class="col-md-2">' + state.requestedMaterials[i].units + '</div>' +
+            '<div class="col-md-1"><i id="D' + state.requestedMaterials[i].id + '" class="glyphicon glyphicon-remove pull-right"></i></div>' +
             '</div>');
-        $('#D' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, deleteMaterial);
-        $('#R' + state.requested_materials[i].id).click({ event: this, id: state.requested_materials[i].id }, setBackOrder);
+        $('#D' + state.requestedMaterials[i].id).click({ event: this, id: state.requestedMaterials[i].id }, deleteMaterial);
+        $('#R' + state.requestedMaterials[i].id).click({ event: this, id: state.requestedMaterials[i].id }, setBackOrder);
     }
 }
 
