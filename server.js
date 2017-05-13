@@ -2,12 +2,9 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const morgan = require("morgan"); 
-const mongoose = require("mongoose"); 
 const {PORT, DATABASE_URL} = require('./config');
-const models = require('./models'); 
-const Material = models.Material;
-const User = models.User; 
-
+const routes = require('./routes');
+const mongoose = require("mongoose"); 
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
@@ -16,121 +13,18 @@ mongoose.Promise = global.Promise;
 app.use(express.static('public')); // for serving static files in express
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//>>>>>>>>>GET ENDPOINTS <<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>ENDPOINTS <<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-app.get('/materials', (req, res) => {
-	Material
-	.find()
-	.limit(1000)
-	.exec()
-	.then(materials => {
-		res.json({
-			materials: materials.map(
-				(material) => material.apiRepr())
-		}); 
-	})
-	.catch(
-		err => {
-			console.error(err); 
-			res.status(500).json({message: 'Internal Server error'}); 
-		});
-}); 
+app.get('/materials', routes.getMaterials); 
 
 //>>>>>>>>>NOT IN USE IN NODE CAPSTONE - FROM CLEINT SIDE 4/22<<<<<<<<<<<<<<<<<<<<
-app.get('/material/:id', (req, res) => {
-  Material
-    // this is a convenience method Mongoose provides for searching
-    // by the object _id property
-    .findById(req.params.id)
-    .exec()
-    .then(material =>res.json(material.apiRepr()))
-    .catch(err => {
-      console.error(err);
-        res.status(500).json({message: 'Internal server error'})
-    });
-});
+app.get('/material/:id', routes.getMaterial);
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//>>>>>>>>>POST ENDPOINTS <<<<<<<<<<<<<<<<<<
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+app.post('/savematerial', routes.postMaterial);
 
-app.post('/savematerial', (req, res) => {
-	const requiredFields = ['vendor', 'quantity', 'product_name', 'catalog_number', 'unit_size', 'units'];
-	for (let i=0; i<requiredFields.length; i++) {
-		const field = requiredFields[i];
-		if (!(field in req.body)) {
-			const message = `Missing \ ${field}\` in request body`
-			console.error(message); 
-			return res.status(400).send(message); 
-		}
-	}
+app.put('/togglebackorder', routes.toggleBackorder);
 
-	Material
-		.create({
-			vendor: req.body.vendor,
-			quantity: req.body.quantity,
-			product_name: req.body.product_name,
-			catalog_number: req.body.catalog_number,
-			unit_size: req.body.unit_size,
-			units: req.body.units})
-		.then(
-			material => res.status(201).json(material.apiRepr()))
-		.catch(err => {
-			console.error(err);
-			res.status(500).json({message: 'Internal server error'}); 
-			});
-});
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//>>>>>>>>>PUT ENDPOINTS <<<<<<<<<<<<<<<<<<<
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
-
-app.put('/togglebackorder', (req, res) => { 
-  const requiredFields = ['id', 'onBackOrder'];
-  for (let i=0; i<requiredFields.length; i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \ ${field}\` in request body`
-      return res.status(400).send(message); 
-    }
-  }
-
-  Material
-      .update({
-          _id: req.body.id
-      },
-      {
-          $set: {
-              onBackOrder: req.body.onBackOrder
-          }
-      })
-      .exec()
-      .then(
-      res.status(201).json({ message: 'done' }))
-      .catch(err => {     
-          console.error(message);
-          res.status(500).json({ message: 'Internal server error' }); 
-        
-      });
-});
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//>>>>>>>>>DELETE ENDPOINTS <<<<<<<<<<<<<<<<
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-
-app.delete('/deletematerial/:id', (req, res) => {  
-  Material
-    .findByIdAndRemove(req.params.id)
-    .exec()
-    .then(() => {
-      res.status(204).json({message: 'success'});
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    });
-});
+app.delete('/deletematerial/:id', routes.deleteMaterial);
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //>>>>>>>>>RUN/CLOSE SERVER <<<<<<<<<<<<<<<<

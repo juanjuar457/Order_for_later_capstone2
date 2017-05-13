@@ -7,9 +7,9 @@ const Schema = mongoose.Schema;
 const MaterialSchema = Schema({
 	vendor: String, 
 	quantity: String, //sometimes they have '3UI' for units 
-	product_name: String, 
-	catalog_number: String, 
-	unit_size: String, //fix the underscore
+	productName: String, 
+	catalogNumber: String, 
+	unitSize: String, //fix the underscore
 	units: String,
 	createDate: {type: Date, default: Date.now}, 
     onBackOrder: Boolean 
@@ -38,9 +38,9 @@ MaterialSchema.methods.apiRepr = function() {
     id: this._id,
     vendor: this.vendor,
     quantity: this.quantity,
-    product_name: this.product_name,
-    catalog_number: this.catalog_number,
-    unit_size: this.unit_size,
+    productName: this.productName,
+    catalogNumber: this.catalogNumber,
+    unitSize: this.unitSize,
     units: this.units,
     createdDate: this.createdDate,
     onBackOrder: this.onBackOrder

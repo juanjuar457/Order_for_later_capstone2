@@ -3,7 +3,6 @@
     font-weight: 5px;
 }
 
-
 .OflHomeButton, .OflHomeButton:hover {
     color: #FFF; 
     display: inline-block;
@@ -14,8 +13,6 @@
     vertical-align: middle;
 
 }
-
-
 
 .OflHeader {
     background-color: #8B4513;   
@@ -45,12 +42,10 @@
     font-weight: 600;
 }
 
-/*Boostsrap Overrides for Order Form*/
-/*perhaps better to do a multi selector with in 1 declecration??*/
 .landingButton, .landingButton:hover {
     color: black;
     font-size: 33px;
-    text-decoration: none;
+    text-decoration: none;  
 }
 
 #landingLink {
@@ -61,17 +56,17 @@ select {
     height: 28px;
 }
 
-.par_desc {
+.parDesc {
     padding: 20px;
     font-size: 30px;
 }
 
-#landing_head {
+/*#landingHead {
     text-align: center;
     font-size: 39px;
-}
+}*/
 
-.example_entry.onBackOrder {
+.exampleEntry.onBackOrder {
     background-color: #B76BA3;
     border-color: #FFF;
 }
@@ -88,11 +83,11 @@ form label {
     width: 200px;
 }
 
-.submit_button {
+/*.submitButton {
     margin: auto;
     text-align: center;
     padding: 10px;
-}
+}*/
 
 body {
     padding-bottom: 50px;
@@ -104,7 +99,7 @@ body {
 }
 
 
-.example_entry {
+.exampleEntry {
     color: #000;
     border-style: solid;
     /*border-color: black;*/
@@ -113,10 +108,10 @@ body {
 }
 
 
-    /* mouse over link */
-    .example_entry:hover {
-        color: #223A5E;
-    }
+/* mouse over link */
+.exampleEntry:hover {
+    color: #223A5E;
+}
 
 
 /*for landing page*/
